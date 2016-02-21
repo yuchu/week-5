@@ -150,4 +150,68 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 
 $(document).ready(function() {
   // Do your stuff here
+  //Task 1: Change HTML to create useful labels for our UI
+  $('#main-heading').text('Parking Violation');
+  $('#text-label1').text('License Place State');
+  $('#text-label2').text('Violation Type');
+  $('#text-label3').text('Location (Address)');
+  $('#number-label').text('Parking Authority Division');
+  $('#checkbox-label1').text('Issued by Police');
+  $('#checkbox-label2').text('Fine above 50');
+  $('#color-label').text('Color');
+
+  //Task 2: Setting (writing) input values
+  $('#text-input1').val('PA');
+  $('#text-input2').val('Double Parking');
+  $('#text-input3').val('210 S 34th St');
+  $('#numeric-input').val('2');
+  $('#color-input').val('#0039e6');
+
+  //Task 3: Getting (reading) input values & Task 5: Add a button trigger to log this form's object to console
+  $('button').click(function(e) {
+    var queryObject = {
+      'License Place State': $('#text-input1').val(),
+      'Violation Type': $('#text-input2').val(),
+      'Location (Address)': $('#text-input3').val(),
+      'Parking Authority Division': $('#numeric-input').val(),
+      'Issued by Police': $('#cbox-input1')[0].checked,
+      'Fine above 50': $('#cbox-input2')[0].checked,
+      'color': $('#color-input').val(),
+      //Task 6
+      'Lat':$('#Lat-input').val(),
+      'Long':$('#Long-input').val(),
+      'Description':$('#Desc-input').val()
+    };
+    console.log(queryObject);
+    L.circleMarker([$('#Lat-input').val(),$('#Long-input').val()],{color:$('#color-input').val()}).addTo(map).bindPopup($('#Desc-input').val());//Task 6
+    var leafletIcon = L.divIcon({className:'leaflet-marker-icon'});//Task 8
+    $('.leaflet-marker-icon').css({'background-color':'#BBE7BD','width':'12px', 'height':'12px','border-radius':'50%'});//Task 8
+    L.marker([$('#Lat-input').val(),$('#Long-input').val()],{icon:leafletIcon}).addTo(map).bindPopup($('#Desc-input').val()); // Task 8
+  });
+
+  //Task 4: Enable user interaction with the form
+  $('#text-input1').prop('disabled',false);
+  $('#text-input2').prop('disabled',false);
+  $('#text-input3').prop('disabled',false);
+  $('#numeric-input').prop('disabled',false);
+  $('#cbox-input1').prop('disabled',false);
+  $('#cbox-input2').prop('disabled',false);
+  $('#color-input').prop('disabled',false);
+
+  //Task 6: Plot input data to the map on button click & Task 7:Use default values
+  //Create new fields
+  $('<h2>Circle Marker</h2>').insertBefore('#color-label');
+  $('<label id="Lat-label" for="Lat-input">Lat </label>').insertBefore('#color-label');
+  $('<input type="number" id="Lat-input" value=39.952216><br><br>').insertBefore('#color-label');
+  $('<label id="Long-label" for="Long-input">Long </label>').insertBefore('#color-label');
+  $('<input type="number" id="Long-input" value=-75.192594><br><br>').insertBefore('#color-label');
+  $('<label id="Desc-label" for="Desc-input">Description </label>').insertBefore('#color-label');
+  $('<input type="text" id="Desc-input" value="PennDesign"><br><br>').insertBefore('#color-label');
+  $('<br>').insertBefore('button');
+  //Plot input data (see Task 3)
+
+  //Task 8: Try Leaflet's divIcon (see Task 3)
+
+  //Task 9: Make a parametric function (make it accept parameters/arguments) to fill the form out
+
 });
