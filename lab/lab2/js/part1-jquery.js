@@ -185,7 +185,6 @@ $(document).ready(function() {
     console.log(queryObject);
     L.circleMarker([$('#Lat-input').val(),$('#Long-input').val()],{color:$('#color-input').val()}).addTo(map).bindPopup($('#Desc-input').val());//Task 6
     var leafletIcon = L.divIcon({className:'leaflet-marker-icon'});//Task 8
-    $('.leaflet-marker-icon').css({'background-color':'#BBE7BD','width':'12px', 'height':'12px','border-radius':'50%'});//Task 8
     L.marker([$('#Lat-input').val(),$('#Long-input').val()],{icon:leafletIcon}).addTo(map).bindPopup($('#Desc-input').val()); // Task 8
   });
 

@@ -21,3 +21,10 @@ body {
     overflow-y: auto;
     padding: 20px;
 }
+
+.leaflet-marker-icon{
+  background-color:#BBE7BD;
+  width:12px;
+  height:12px;
+  border-radius:50%;
+}
